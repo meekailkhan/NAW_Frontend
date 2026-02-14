@@ -46,7 +46,7 @@ export function TaskEditModal({ task, onClose, onSave }: TaskEditModalProps) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-slideUp">
-        {/* Header */}
+       
         <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-6 rounded-t-2xl">
           <div className="flex items-center justify-between">
             <div>
@@ -158,7 +158,6 @@ export function TaskEditModal({ task, onClose, onSave }: TaskEditModalProps) {
               </div>
             </div>
 
-            {/* Due Date */}
             <div>
               <label
                 htmlFor="dueDate"
@@ -177,7 +176,6 @@ export function TaskEditModal({ task, onClose, onSave }: TaskEditModalProps) {
             </div>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex gap-4 pt-4 border-t border-gray-100">
             <button
               type="button"

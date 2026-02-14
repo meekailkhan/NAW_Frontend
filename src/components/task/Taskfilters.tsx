@@ -50,7 +50,7 @@ export function TaskFilters({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Status Filter */}
+ 
         <div>
           <label
             htmlFor="status"
@@ -89,7 +89,6 @@ export function TaskFilters({
           </div>
         </div>
 
-        {/* Priority Filter */}
         <div>
           <label
             htmlFor="priority"
@@ -128,7 +127,7 @@ export function TaskFilters({
           </div>
         </div>
 
-        {/* Assigned User Filter */}
+   
         <div>
           <label
             htmlFor="assignedUser"

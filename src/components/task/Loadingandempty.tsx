@@ -1,3 +1,5 @@
+import { useRouter } from "next/navigation";
+
 export function LoadingSpinner() {
   return (
     <div className="flex flex-col justify-center items-center py-16">
@@ -18,7 +20,8 @@ export function LoadingSpinner() {
   );
 }
 
-export function EmptyState() {
+export function EmptyState({ role }: { role: string }) {
+  const router = useRouter()
   return (
     <div className="bg-white rounded-2xl shadow-lg p-16 text-center">
       <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 mb-6">
@@ -41,24 +44,29 @@ export function EmptyState() {
         There are no tasks matching your current filters. Try adjusting your
         search criteria or create a new task.
       </p>
-      {/* <div className="mt-8 flex justify-center gap-4">
-        <button className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg">
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-          Create New Task
-        </button>
-      </div> */}
+      <div className="mt-8 flex justify-center gap-4">
+        {role === "admin" && (
+          <button onClick={()=> router.push("/task/create") } className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg">
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            Create New Task
+          </button>
+        )}
+        {role !== "admin" && (
+          <h1>There is no tasks as admin to create tasks</h1>
+        )}
+      </div>
     </div>
   );
 }

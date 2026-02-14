@@ -10,9 +10,6 @@ import {
 import { Task } from "@/types/task";
 import { getRole, logout } from "@/lib/auth";
 
-
-
-
 import { TaskCard } from "./task/TaskCard";
 import { TaskFilters } from "./task/Taskfilters";
 import { TaskEditModal } from "./task/Taskeditmodal";
@@ -27,7 +24,7 @@ export function AllTask() {
   const [role, setRole] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
-  const router = useRouter()
+  const router = useRouter();
 
   const [filters, setFilters] = useState({
     status: "",
@@ -62,7 +59,7 @@ export function AllTask() {
   }, [page, filters]);
 
   const handleFilterChange = (
-    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
   ) => {
     setPage(1);
     setFilters({ ...filters, [e.target.name]: e.target.value });
@@ -70,7 +67,9 @@ export function AllTask() {
 
   const handleDelete = async (taskId: string) => {
     if (
-      window.confirm("Are you sure you want to delete this task? This action cannot be undone.")
+      window.confirm(
+        "Are you sure you want to delete this task? This action cannot be undone.",
+      )
     ) {
       try {
         await deleteTask(taskId);
@@ -85,7 +84,7 @@ export function AllTask() {
   const handleBulkUpdate = async () => {
     if (
       window.confirm(
-        "Are you sure you want to mark all tasks as completed? This will affect all tasks in the system."
+        "Are you sure you want to mark all tasks as completed? This will affect all tasks in the system.",
       )
     ) {
       try {
@@ -156,7 +155,8 @@ export function AllTask() {
             </div>
           </div>
 
-           <button
+          <div className="flex gap-4">
+            <button
               onClick={() => {
                 if (window.confirm("Are you sure you want to logout?")) {
                   logout();
@@ -180,6 +180,25 @@ export function AllTask() {
               </svg>
               <span className="hidden sm:inline">Logout</span>
             </button>
+            {role === "admin" && (
+              <button onClick={()=> router.push("/task/create")} className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                Create New Task
+              </button>
+            )}
+          </div>
 
           {/* Stats Bar */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
@@ -201,7 +220,9 @@ export function AllTask() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-gray-900">{tasks.length}</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {tasks.length}
+                  </p>
                   <p className="text-xs text-gray-500">Total Tasks</p>
                 </div>
               </div>
@@ -299,7 +320,7 @@ export function AllTask() {
         {isLoading && <LoadingSpinner />}
 
         {/* Empty State */}
-        {!isLoading && tasks.length === 0 && <EmptyState />}
+        {!isLoading && tasks.length === 0 && <EmptyState role={role ?? "user"} />}
 
         {/* Tasks List */}
         {!isLoading && tasks.length > 0 && (
