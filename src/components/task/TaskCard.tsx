@@ -132,15 +132,15 @@ export function TaskCard({ task, role, onEdit, onDelete }: TaskCardProps) {
           <div className="flex items-center gap-3">
             <div className="flex-shrink-0">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-semibold text-lg shadow-md">
-                {task.assignedUser.name.charAt(0).toUpperCase()}
+                {task.assignedUser ? task.assignedUser.name.charAt(0).toUpperCase() : "NB"}
               </div>
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-gray-900 truncate">
-                {task.assignedUser.name}
+                {task.assignedUser ? task.assignedUser.name : "Assined Not Yet"}
               </p>
               <p className="text-xs text-gray-500 truncate">
-                {task.assignedUser.email}
+                {task.assignedUser ? task.assignedUser.email : "Assined Not Yet"}
               </p>
             </div>
           </div>
@@ -223,7 +223,7 @@ export function TaskCard({ task, role, onEdit, onDelete }: TaskCardProps) {
             </>
           )}
           <div className="mt-8 flex justify-center gap-4">
-            <button onClick={()=> router.push(`/task/${task._id}`) } className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg">
+            <button onClick={() => router.push(`/task/${task._id}`)} className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg">
               <svg
                 className="w-5 h-5"
                 fill="none"

@@ -32,16 +32,21 @@ export default function CreateTask() {
       return;
     }
 
-    setIsSubmitting(true);
+    const payload: any = {
+      title,
+      description,
+      priority,
+      dueDate,
+    };
+
+    if (assignedUser) {
+      payload.assignedUser = assignedUser;
+    }
+
+
 
     try {
-      const data = await createTask({
-        title,
-        description,
-        priority,
-        assignedUser,
-        dueDate,
-      });
+      const data = await createTask(payload);
 
       alert(data.message);
 
@@ -60,7 +65,7 @@ export default function CreateTask() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4 py-8">
       <div className="max-w-3xl mx-auto">
-      
+
         <div className="mb-8">
           <button
             onClick={() => router.back()}
@@ -110,7 +115,7 @@ export default function CreateTask() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-          
+
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-6">
             <h2 className="text-2xl font-bold text-white">Task Details</h2>
             <p className="text-blue-100 text-sm mt-1">
@@ -118,7 +123,7 @@ export default function CreateTask() {
             </p>
           </div>
 
-       
+
           <div className="px-8 py-6 space-y-6">
 
             <div>
@@ -138,7 +143,7 @@ export default function CreateTask() {
               />
             </div>
 
-      
+
             <div>
               <label
                 htmlFor="description"
@@ -157,7 +162,7 @@ export default function CreateTask() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    
+
               <div>
                 <label
                   htmlFor="priority"
@@ -267,7 +272,7 @@ export default function CreateTask() {
             </div>
           </div>
 
-          
+
           <div className="px-8 py-6 bg-gray-50 border-t border-gray-100">
             <div className="flex flex-col sm:flex-row gap-4">
               <button

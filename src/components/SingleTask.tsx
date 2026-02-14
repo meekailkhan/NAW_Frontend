@@ -96,7 +96,7 @@ function SingleTask({ id }: { id: string }) {
 
       await partialUpdateTask(id, payload);
       fetchTask();
-      
+
       if (field === "priority") setNewPriority("");
       if (field === "dueDate") setNewDueDate("");
       if (field === "description") setNewDescription("");
@@ -196,7 +196,7 @@ function SingleTask({ id }: { id: string }) {
             </svg>
             Back to Tasks
           </button>
-          
+
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-lg">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -214,7 +214,7 @@ function SingleTask({ id }: { id: string }) {
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
               <h2 className="text-xl font-bold text-gray-900 mb-4">Task Information</h2>
-              
+
               <div className="space-y-4">
                 <div>
                   <label className="text-sm font-semibold text-gray-700 mb-1 block">Description</label>
@@ -231,7 +231,7 @@ function SingleTask({ id }: { id: string }) {
                       {task.status.replace("-", " ")}
                     </span>
                   </div>
-                  
+
                   <div>
                     <label className="text-sm font-semibold text-gray-700 mb-2 block">Priority</label>
                     <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border ${getPriorityColor(task.priority)}`}>
@@ -263,14 +263,14 @@ function SingleTask({ id }: { id: string }) {
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-semibold text-lg shadow-md">
                       {typeof task.assignedUser === "object"
                         ? task.assignedUser.name.charAt(0).toUpperCase()
-                        : "U"}
+                        : "NB"}
                     </div>
                     <div>
                       <p className="text-xs text-gray-500 font-medium">Assigned To</p>
                       <p className="text-sm font-semibold text-gray-900">
                         {typeof task.assignedUser === "object"
                           ? task.assignedUser.name
-                          : task.assignedUser}
+                          : "Not Assigned Yet"}
                       </p>
                     </div>
                   </div>
@@ -291,7 +291,7 @@ function SingleTask({ id }: { id: string }) {
                     </svg>
                     Pending
                   </button>
-                  
+
                   <button
                     onClick={() => handleStatusChange("in-progress")}
                     className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg"
@@ -301,7 +301,7 @@ function SingleTask({ id }: { id: string }) {
                     </svg>
                     In Progress
                   </button>
-                  
+
                   <button
                     onClick={() => handleStatusChange("completed")}
                     className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg"
@@ -317,7 +317,7 @@ function SingleTask({ id }: { id: string }) {
 
             <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
               <h2 className="text-xl font-bold text-gray-900 mb-4">Comments</h2>
-              
+
               <div className="mb-6">
                 <div className="flex gap-3">
                   <input
@@ -344,7 +344,7 @@ function SingleTask({ id }: { id: string }) {
                 </div>
               </div>
 
-          
+
               <div className="space-y-4">
                 {task.comments && task.comments.length > 0 ? (
                   task.comments.map((comment: any) => (
@@ -389,7 +389,7 @@ function SingleTask({ id }: { id: string }) {
             <div className="space-y-6">
               <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Updates</h2>
-                
+
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -460,7 +460,7 @@ function SingleTask({ id }: { id: string }) {
 
               <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">Reassign Task</h2>
-                
+
                 <div className="space-y-3">
                   <label className="block text-sm font-semibold text-gray-700">
                     New User ID

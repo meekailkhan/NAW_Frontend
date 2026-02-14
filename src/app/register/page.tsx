@@ -15,6 +15,7 @@ interface RegisterForm {
 
 interface RegisterResponse {
   success: boolean;
+  role: "user" | "admin";
   token: string;
   user: {
     id: string;
@@ -51,9 +52,11 @@ export default function RegisterPage() {
 
     try {
       const { data } = await api.post<RegisterResponse>("/auth/register", form);
+      console.log(form)
 
       if (data.success) {
-        setAuthData(data.token, data.user.role);
+        console.log("====data is ====",data)
+        setAuthData(data.token, data.role);
         router.push("/");
       }
     } catch (error: any) {
